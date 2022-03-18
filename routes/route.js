@@ -1,17 +1,19 @@
 const express = require('express');
+const tutorials = require("../controllers/TutorialController.js");
+// const UserController = require('../controllers/UserController');
+
 const router = express.Router();
 
-// middleware that is specific to this router
-// router.use((req, res, next) => {
-//   console.log('Time: ', Date.now())
-//   next()
-// })
+router.post("/", tutorials.create);
+router.get("/", tutorials.findAll);
+router.get("/published", tutorials.findAllPublished);
+router.get("/:id", tutorials.findOne);
+router.put("/:id", tutorials.update);
+router.delete("/:id", tutorials.delete);
+router.delete("/", tutorials.deleteAll);
 
-// import controller method
-const UserController = require('../controllers/UserController');
-
-
-// define the home page route
-router.get('/', [UserController.logIn])
+// // define the home page route
+// router.get('/login', [UserController.login]);
+// router.get('/register', [UserController.createUser]);
 
 module.exports = router
